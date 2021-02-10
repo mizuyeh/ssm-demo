@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="chenyx.dao.DeptDao">
+    <resultMap id="deptResultMap" type="Dept">
+        <id property="deptId" column="dept_id"/>
+        <result property="deptName" column="dept_name"/>
+        <result property="deptAddress" column="dept_address"/>
+    </resultMap>
+
+    <!--id和命名空间来定位SQL语句，parameterType表示参数类型，resultMap表示返回值类型-->
+    <select id="selectDept" parameterType="Integer" resultMap="deptResultMap">
+        select * from dept where dept_id=#{deptId}
+    </select>
+
+    <insert id="insertDept" parameterType="Dept">
+        insert into dept(dept_name, dept_address) values (#{deptName}, #{deptAddress})
+    </insert>
+</mapper>
